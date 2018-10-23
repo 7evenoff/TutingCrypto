@@ -56,15 +56,11 @@ def encrypt_command(bot, update):
 
 def encryption(bot, update, user_data):
     try:    
-        result = re.split(r'[#]', update.message.text)
-        print(result)
+        result = re.split(r'[#]', update.message.text)     
         temp = result[1]
         text = temp.replace(" k","")
-        key = result[2]
-        print(text)
-        print(key)
-        listKeys = get_key_list(key)
-        print(listKeys)
+        key = result[2]      
+        listKeys = get_key_list(key)    
         encrypted_text = encrypt(text, listKeys)
         update.message.reply_text('There is your encrypted text : {}'.
         format(encrypted_text))
@@ -79,8 +75,7 @@ def encrypt(text, listKeys):
         for index, symbol in enumerate(text):
             temp=(tabula_recta.index(symbol)+tabula_recta.index(key[index]))%len(tabula_recta)
             final+=tabula_recta[temp] 
-        text = final
-        print(text)
+        text = final   
     return final
 
 def decrypt_command(bot, update):
@@ -99,11 +94,8 @@ def decryption(bot, update, user_data):
         result = re.split(r'[#]', update.message.text)
         temp = result[1]
         text = temp.replace(" k","")
-        key = result[2]
-        print(text)
-        print(key)
-        listKeys = get_key_list(key)
-        print(listKeys)
+        key = result[2]      
+        listKeys = get_key_list(key)  
         decrypted_text = decrypt(text, listKeys)
         update.message.reply_text('There is your decrypted text : {}'.
         format(decrypted_text))
